@@ -1,0 +1,24 @@
+.bg-dark{
+    background-color: #0a447d!important;
+}
+.btn-outline-success{
+    color: white;
+    border-color: white;
+}
+#logo{
+    font-size: 1.8rem;
+    font-family: 'Righteous', cursive;
+    margin-right: 3rem;
+}
+.slider{
+    margin-top: 68px;
+}
+#bienvenido_slider{
+    color: white;
+    font-size: 5rem;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+#bienvenido_slider spam{
+    font-family: 'Righteous', cursive;
+}

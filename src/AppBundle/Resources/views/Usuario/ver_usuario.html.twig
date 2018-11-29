@@ -1,16 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Lista de Usuarios {% endblock %}
+{% block title %} Ver Usuarios {% endblock %}
 
-{% block Usuario_menu %} {% endblock %}
+{% block usuario_list %} active {% endblock %}
 
 {% block body %}
-
-    <h1>Lista de Usuarios </h1>
+    <h2>Lista de Usuarios </h2>
     {% for usuario in usuarios %}
-    <li> {{ usuario.nombre }} - &nbsp; {{ usuario.email }}</li>
+        <li>{{ usuario.nombre }} - {{ usuario.email }}</li>
     {% endfor %}
 
 {% endblock %}
-
-
