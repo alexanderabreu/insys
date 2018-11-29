@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,6 +56,24 @@ class Usuario
      * @ORM\Column(name="habilitado", type="string", length=255)
      */
     private $habilitado;
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="Solicitud", mappedBy="usuarioSolicitante")
+     *
+     */
+
+    private $misSolicitudes;
+
+    /**
+     * Usuario constructor.
+     * @param int id
+     */
+
+    public function __construct()
+    {
+        $this->misSolicitudes = new  ArrayCollection();
+    }
 
 
     /**

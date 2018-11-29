@@ -19,7 +19,7 @@ class DefaultController extends Controller
         $usuario = new Usuario();
         $usuario->setNombre("Juana");
         $usuario->setApellido("Martinez");
-        $usuario->setEmail("jumartinez@mail.com");
+        $usuario->setEmail("amartinez@mail.com");
         $usuario->setPassword("admin");
         $usuario->setHabilitado(true);
 
