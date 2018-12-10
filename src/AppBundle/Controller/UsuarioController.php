@@ -2,11 +2,11 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Usuario;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 /**
@@ -16,26 +16,34 @@ use Symfony\Component\HttpFoundation\Request;
 class UsuarioController extends Controller
 {
     /**
-     * @Route("/", name="ver_usuario")
+     * @Route("/usuario", name="ver_usuario")
      */
-    public function indexAction(Request $request)
+    public function indexAction(UserPasswordEncoderInterface $encoder, Request $request)
     {
-     //   $usuario = new Usuario();
-     //   $usuario->setNombre("Juana");
-     //   $usuario->setApellido("Martinez");
-      //  $usuario->setEmail("amartinez@mail.com");
-       // $usuario->setPassword("admin");
-        // $usuario->setHabilitado(true);
+        $usuario = new Usuario();
+        $usuario->setNombre("Cama");
+        $usuario->setApellido("Martinez");
+        $usuario->setEmail("cama@gmail.com");
+        $usuario->setPassword("1223456");
+        $usuario->setHabilitado(true);
 
-      //  $dbcnx = $this->getDoctrine()->getManager();
-      //  $dbcnx->persist($usuario);
-      //  $dbcnx->flush();
+        $encoder = $encoder->encodePassword($usuario, "123456");
+        $usuario->setPassword($encoder);
 
-        $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findAll();
+
+        $dbcnx = $this->getDoctrine()->getManager();
+        $dbcnx->persist($usuario);
+        $dbcnx->flush();
+
+         $usuario = $this->getDoctrine()->getRepository(Usuario::class)->findAll();
 
 
         return $this->render('@App/Usuario/ver_usuario.html.twig', [
-            "usuarios" => [$usuario]
-    ]);
+            "usuarios" => $usuario
+        ]);
     }
+
+
+
+
 }

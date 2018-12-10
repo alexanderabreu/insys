@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Campoafin</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ campoAfin.id }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ campoAfin.descripcion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('campoafin_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('campoafin_edit', { 'id': campoAfin.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

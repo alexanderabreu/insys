@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * Usuario
  *
- * @ORM\Table(name="usuario", uniqueConstraints={@ORM\UniqueConstraint(name="email_idx", columns={"email"})})
+ * @ORM\Table(name="Usuario", uniqueConstraints={@ORM\UniqueConstraint(name="email_idx", columns={"email"})})
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuarioRepository")
  */
 
@@ -77,6 +77,43 @@ class Usuario implements UserInterface, \Serializable
     {
         $this->misSolicitudes = new  ArrayCollection();
     }
+
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="Solicitud", mappedBy="usuarioAsignado")
+     *
+     */
+
+    private $misAsignaciones;
+
+    /**
+     * Usuario constructor 2.
+     * @param int $id
+     */
+
+
+    public function __construct2()
+    {
+        $this->misAsignaciones = new  ArrayCollection();
+    }
+
+    /**
+     * @var
+     * @ORM\OneToMany(targetEntity="CampoAfin", mappedBy="usuarioTecnico")
+     *
+     */
+
+    private $misUsuarios;
+
+
+    /**
+     * @var Usuario
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\SolicitudNota", mappedBy="usuarioAnotador")
+     */
+
+    private $notasUsuario;
 
 
     /**
@@ -217,7 +254,7 @@ class Usuario implements UserInterface, \Serializable
      */
     public function serialize()
     {
-        return $this->serialize([
+        return serialize([
             $this->id,
             $this->nombre,
             $this->email
@@ -239,7 +276,7 @@ class Usuario implements UserInterface, \Serializable
             $this->id,
             $this->nombre,
             $this->email
-            ) = $this->unserialize($serialized);
+            ) = unserialize($serialized,['allowed_classes' => false]);
     }
 
     /**
@@ -297,4 +334,5 @@ class Usuario implements UserInterface, \Serializable
         // TODO: Implement eraseCredentials() method.
     }
 }
+
 

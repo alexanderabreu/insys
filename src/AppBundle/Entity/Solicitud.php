@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Solicitud
  *
- * @ORM\Table(name="solicitud")
+ * @ORM\Table(name="Solicitud")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SolicitudRepository")
  */
 class Solicitud
@@ -52,10 +52,39 @@ class Solicitud
 
 
     /**
+     * @var Usuario
+     *
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="misAsignaciones")
+     */
+
+    private $usuarioAsignado;
+
+
+    /**
+     * @var
+     * @ORM\ManytoOne(targetEntity="Estatus", inversedBy="estatusAsignado")
+     *
+     */
+
+    private $misEstatus;
+
+
+    /**
+     * @var Solicitud
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\SolicitudNota", inversedBy="misSolicitudes")
+     */
+
+    private $misNotas;
+
+
+    /**
      * Get id
      *
      * @return int
      */
+
+
     public function getId()
     {
         return $this->id;
